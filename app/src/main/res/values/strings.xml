@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ComposeLearning</string>
+
+    <!-- Alert -->
+
+    <string name="alert_no_internet">No internet connection</string>
+    <string name="alert_diet_plan">Diet Plan will be available once treatment has been started</string>
+    <string name="alert_reorder">Reorder will be available once treatment has been started</string>
+    <string name="alert_no_server_connection">Server error</string>
+    <string name="alert_undefined">Unknown error</string>
+</resources>
