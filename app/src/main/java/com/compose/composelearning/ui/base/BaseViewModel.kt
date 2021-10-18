@@ -8,9 +8,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.compose.composelearning.BuildConfig
 import com.compose.composelearning.R
-import com.compose.composelearning.data.exception.ClientException
-import com.compose.composelearning.data.exception.NoInternetException
 import com.compose.composelearning.util.Event
+import com.compose.domain.exception.ClientException
+import com.compose.domain.exception.NoInternetException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException

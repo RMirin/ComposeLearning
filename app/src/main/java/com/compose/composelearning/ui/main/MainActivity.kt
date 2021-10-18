@@ -1,13 +1,12 @@
 package com.compose.composelearning.ui.main
 
+import com.compose.domain.common.State
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,12 +16,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.compose.composelearning.data.dto.RecipeDto
-import com.compose.composelearning.ui.DataProvider
-import com.compose.composelearning.ui.base.State
 import com.compose.composelearning.ui.theme.ComposeLearningTheme
+import com.compose.domain.entities.RecipeModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         // Mount your UI in according to uiState object
         when (uiState.value) {
             is State.Success -> {
-                BarkHomeContent((uiState.value as State.Success<List<RecipeDto>>).data)
+                BarkHomeContent((uiState.value as State.Success<List<RecipeModel>>).data)
                 Log.e("TAG", "ShowItems:")
             }
             is State.Error -> { }
@@ -63,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
 @ExperimentalAnimationApi
 @Composable
-fun BarkHomeContent(list: List<RecipeDto>) {
+fun BarkHomeContent(list: List<RecipeModel>) {
     LazyColumn(
         contentPadding = PaddingValues(vertical = 8.dp),
         modifier = Modifier.fillMaxSize()
@@ -78,7 +76,7 @@ fun BarkHomeContent(list: List<RecipeDto>) {
 
 @ExperimentalAnimationApi
 @Composable
-fun RecipeListItem(recipe: RecipeDto) {
+fun RecipeListItem(recipe: RecipeModel) {
     var extended by remember { mutableStateOf(false) }
     Card(
         shape = MaterialTheme.shapes.small,
@@ -86,21 +84,21 @@ fun RecipeListItem(recipe: RecipeDto) {
             .padding(start = 16.dp, top = 0.dp, bottom = 8.dp, end = 16.dp)
             .clickable { extended = !extended }
     ) {
-    Row(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(start = 16.dp, top = 8.dp, bottom = 8.dp, end = 16.dp)
-    ) {
-        Column() {
-            Text(text = recipe.title)
-            AnimatedVisibility(visible = !extended) {
-                Text(text = "VIEW DETAIL")
-            }
-            AnimatedVisibility(visible = extended) {
-                Text(text = recipe.summary)
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 16.dp, top = 8.dp, bottom = 8.dp, end = 16.dp)
+        ) {
+            Column {
+                Text(text = recipe.title)
+                AnimatedVisibility(visible = !extended) {
+                    Text(text = "VIEW DETAIL", color = Blue)
+                }
+                AnimatedVisibility(visible = extended) {
+                    Text(text = recipe.summary)
+                }
             }
         }
-    }
     }
 }
 
@@ -109,6 +107,6 @@ fun RecipeListItem(recipe: RecipeDto) {
 @Composable
 fun DefaultPreview() {
     ComposeLearningTheme {
-        BarkHomeContent(DataProvider.puppyList)
+//        BarkHomeContent(DataProvider.puppyList)
     }
 }

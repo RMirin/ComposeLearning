@@ -3,11 +3,11 @@ package com.compose.composelearning.di.modules
 import android.content.Context
 import android.net.ConnectivityManager
 import com.compose.composelearning.BuildConfig
-import com.compose.composelearning.data.remote.ApiService
-import com.compose.composelearning.data.remote.interceptor.AppVersionInterceptor
-import com.compose.composelearning.data.remote.interceptor.NetworkConnectionInterceptor
-import com.compose.composelearning.data.service.NetworkService
-import com.compose.composelearning.data.service.NetworkServiceImpl
+import com.compose.domain.remote.ApiService
+import com.compose.domain.service.NetworkService
+import com.compose.domain.service.NetworkServiceImpl
+import com.compose.domain.remote.interceptor.AppVersionInterceptor
+import com.compose.domain.remote.interceptor.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext

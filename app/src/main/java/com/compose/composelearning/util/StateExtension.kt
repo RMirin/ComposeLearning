@@ -1,6 +1,6 @@
 package com.compose.composelearning.util
 
-import com.compose.composelearning.ui.base.State
+import com.compose.domain.common.State
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 
