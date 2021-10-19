@@ -1,15 +1,16 @@
-package com.compose.domain.service
+package com.compose.data.service
 
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import javax.inject.Inject
 
 interface NetworkService {
     val isNetworkAvailable: Boolean
 }
 
 @Suppress("DEPRECATION")
-class NetworkServiceImpl(
+class NetworkServiceImpl @Inject constructor(
     private val connectivityManager: ConnectivityManager
 ) : NetworkService {
 

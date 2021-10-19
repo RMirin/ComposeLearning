@@ -1,7 +1,7 @@
-package com.compose.domain.remote.interceptor
+package com.compose.data.remote.interceptor
 
-import com.compose.domain.exception.NoInternetException
-import com.compose.domain.service.NetworkService
+import com.compose.data.exception.NoInternetException
+import com.compose.data.service.NetworkService
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
