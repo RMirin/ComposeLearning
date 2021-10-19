@@ -1,0 +1,1 @@
+/home/adnow3/Рабочий стол/ComposeLearning/buildSrc/build/classes/kotlin/main/ClassPaths.class:/home/adnow3/Рабочий стол/ComposeLearning/buildSrc/build/classes/kotlin/main/Dependencies.class:/home/adnow3/Рабочий стол/ComposeLearning/buildSrc/build/classes/kotlin/main/Versions.class
