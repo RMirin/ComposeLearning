@@ -1,4 +1,4 @@
-package com.compose.domain.exception
+package com.compose.data.exception
 
 import java.io.IOException
 

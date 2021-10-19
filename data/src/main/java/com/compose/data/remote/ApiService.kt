@@ -1,4 +1,4 @@
-package com.compose.domain.remote
+package com.compose.data.remote
 
 import com.compose.data.response.RecipesResponse
 import retrofit2.http.GET

@@ -1,4 +1,4 @@
-package com.compose.domain.remote.interceptor
+package com.compose.data.remote.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

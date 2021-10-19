@@ -6,16 +6,20 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.compose.composelearning.BuildConfig
 import com.compose.composelearning.R
 import com.compose.composelearning.util.Event
-import com.compose.domain.exception.ClientException
-import com.compose.domain.exception.NoInternetException
+import com.compose.data.exception.ClientException
+import com.compose.data.exception.NoInternetException
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import javax.inject.Inject
 
-open class BaseViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+open class BaseViewModel @Inject constructor(application: Application) : ViewModel() {
 
     protected val context = application.applicationContext
 

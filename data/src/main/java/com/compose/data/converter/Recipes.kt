@@ -1,4 +1,4 @@
-package com.compose.domain.converter
+package com.compose.data.converter
 
 import com.compose.data.dto.RecipeDto
 import com.compose.data.response.RecipesResponse
