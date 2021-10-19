@@ -1,5 +1,5 @@
-Jetpack compose
-MVVM
-Dagger Hilt
-Multi module
+Jetpack compose,
+MVVM,
+Dagger Hilt,
+Multi module,
 Kotlin DSL
