@@ -8,7 +8,7 @@ object Dependencies {
     const val retrofit2Retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
     const val retrofit2ConverterJson = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
     const val retrofit2AdapterRxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitVersion}"
-    const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLoggingInterceptor}"
+    const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLoggingInterceptorVersion}"
     const val kotlinCoroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutinesVersion}"
     const val kotlinCoroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutinesVersion}"
     const val daggerHilt = "com.google.dagger:hilt-android:${Versions.daggerHiltVersion}"
