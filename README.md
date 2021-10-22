@@ -2,4 +2,5 @@ Jetpack compose,
 MVVM,
 Dagger Hilt,
 Multi module,
-Kotlin DSL
+Kotlin DSL,
+Coroutines state flow
