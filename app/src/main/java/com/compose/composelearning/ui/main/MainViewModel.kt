@@ -1,7 +1,6 @@
 package com.compose.composelearning.ui.main
 
 import android.app.Application
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.compose.composelearning.ui.base.BaseViewModel
 import com.compose.composelearning.util.doOnError
@@ -19,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val mainUseCase: MainUseCase,
-    private val app: Application
+    app: Application
 ): BaseViewModel(app) {
 
     private val _uiState = MutableStateFlow<State<List<RecipeModel>>>(State.Loading)
@@ -28,13 +27,13 @@ class MainViewModel @Inject constructor(
 
     fun getData() = mainUseCase.getData()
         .doOnLoading {
-            showErrorState.set(true)
+            _uiState.value = State.Loading
         }
         .doOnSuccess { dto ->
             _uiState.value = State.Success(dto.recipes)
         }
         .doOnError { error ->
-            showErrorState.set(false)
+            _uiState.value = State.Error(error)
             showBasicError(error)
         }
         .launchIn(viewModelScope)

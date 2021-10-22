@@ -25,4 +25,5 @@ object Versions {
     const val junitVersion = "4.13.2"
     const val androidxTestExtJunitVersion = "1.1.3"
     const val androidxEspressoCoreVersion = "3.4.0"
+    const val navigationComposeVersion = "2.4.0-alpha10"
 }
