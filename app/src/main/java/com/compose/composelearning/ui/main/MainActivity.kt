@@ -3,6 +3,7 @@ package com.compose.composelearning.ui.main
 import com.compose.domain.common.State
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -31,6 +32,8 @@ import com.compose.domain.entities.RecipeModel
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.text.HtmlCompat
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -130,7 +133,7 @@ fun RecipeListItem(recipe: RecipeModel) {
                         Text(text = "View detail", color = Blue)
                     }
                     AnimatedVisibility(visible = extended) {
-                        Text(text = recipe.summary)
+                        Html(text = recipe.summary)
                     }
                 }
             }
@@ -162,6 +165,15 @@ fun ReloadButton(viewModel: MainViewModel) {
             Text("reload", color = Color.White)
         }
     }
+}
+
+@Composable
+fun Html(text: String) {
+    AndroidView(factory = { context ->
+        TextView(context).apply {
+            setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY))
+        }
+    })
 }
 
 @ExperimentalAnimationApi
