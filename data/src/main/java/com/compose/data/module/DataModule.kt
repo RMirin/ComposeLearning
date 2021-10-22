@@ -1,10 +1,16 @@
 package com.compose.data.module
 
+import android.content.Context
+import android.net.ConnectivityManager
 import com.compose.data.BuildConfig
 import com.compose.data.remote.ApiService
+import com.compose.data.remote.interceptor.NetworkConnectionInterceptor
+import com.compose.data.service.NetworkService
+import com.compose.data.service.NetworkServiceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,13 +25,23 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient =
+    fun provideNetworkService(@ApplicationContext context: Context): NetworkService =
+        NetworkServiceImpl(
+            context.getSystemService(
+                Context.CONNECTIVITY_SERVICE
+            ) as ConnectivityManager
+        )
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(networkService: NetworkService): OkHttpClient =
         OkHttpClient.Builder()
             .readTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(15, TimeUnit.SECONDS)
             .addInterceptor(
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             )
+            .addInterceptor(NetworkConnectionInterceptor(networkService))
             .build()
 
     @Provides

@@ -1,5 +1,6 @@
 package com.compose.data.remote.interceptor
 
+import android.util.Log
 import com.compose.data.exception.NoInternetException
 import com.compose.data.service.NetworkService
 import okhttp3.Interceptor

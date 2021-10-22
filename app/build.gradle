@@ -101,4 +101,7 @@ dependencies {
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.androidxTestExtJunit)
     androidTestImplementation(Dependencies.androidxEspressoCore)
+
+    //Navigation compose
+    implementation(Dependencies.navigationCompose)
 }

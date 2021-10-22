@@ -27,4 +27,5 @@ object Dependencies {
     const val junit = "junit:junit:${Versions.junitVersion}"
     const val androidxTestExtJunit = "androidx.test.ext:junit:${Versions.junitVersion}"
     const val androidxEspressoCore = "androidx.test.espresso:espresso-core:${Versions.androidxEspressoCoreVersion}"
+    const val navigationCompose = "androidx.navigation:navigation-compose:${Versions.navigationComposeVersion}"
 }
