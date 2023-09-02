@@ -6,13 +6,11 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         minSdk 21
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -38,6 +36,7 @@ android {
         correctErrorTypes = true
         generateStubs = true
     }
+    namespace 'com.compose.data'
 }
 
 dependencies {
@@ -49,11 +48,14 @@ dependencies {
     implementation(Dependencies.androidxAppcompatAppcompat)
     implementation(Dependencies.comGoogleAndroidMaterialMaterial)
 
-    //Networking
-    implementation(Dependencies.retrofit2Retrofit)
-    implementation(Dependencies.retrofit2ConverterJson)
-    implementation(Dependencies.retrofit2AdapterRxjava2)
-    implementation(Dependencies.okhttpLoggingInterceptor)
+    // Retrofit 2
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // OkHttp
+    implementation("com.squareup.okhttp3:okhttp-bom:5.0.0-alpha.7")
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
 
     //Kotlin Coroutines
     implementation(Dependencies.kotlinCoroutinesCore)
@@ -63,17 +65,4 @@ dependencies {
     //DI
     implementation(Dependencies.daggerHilt)
     kapt(Dependencies.daggerHiltCompiler)
-
-    //Reactive
-    implementation(Dependencies.rxJava2RxAndroid)
-    implementation(Dependencies.rxJava3RxJava)
-
-    //Lifecycle
-    implementation(Dependencies.lifecycleCommonJava8)
-    implementation(Dependencies.lifecycleExtensions)
-
-    //Test
-    testImplementation(Dependencies.junit)
-    androidTestImplementation(Dependencies.androidxTestExtJunit)
-    androidTestImplementation(Dependencies.androidxEspressoCore)
 }

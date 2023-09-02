@@ -1,8 +1,8 @@
-package com.compose.composelearning.di
+package com.compose.data.di
 
 import com.compose.data.remote.ApiService
 import com.compose.data.repository.MainRepositoryImpl
-import com.compose.domain.repositories.MainRepository
+import com.compose.domain.MainRepository
 import com.compose.domain.usecases.MainUseCase
 import com.compose.domain.usecases.MainUseCaseImpl
 import dagger.Module

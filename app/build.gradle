@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.compose.composelearning"
@@ -33,7 +33,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = Versions.jvmTargetVersion
-        useIR = true
     }
     buildFeatures {
         compose true
@@ -52,18 +51,49 @@ android {
         correctErrorTypes = true
         generateStubs = true
     }
+    namespace 'com.compose.composelearning'
 }
 
 dependencies {
 
-    implementation(project(":domain"))
     implementation(project(":data"))
+    implementation(project(":domain"))
+
+    // Kotlin
+    implementation(Dependencies.kotlinCoroutinesAndroid)
+
+    // UI Components
+    implementation(Dependencies.comGoogleAndroidMaterialMaterial)
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6")
+
+    // Core
+    implementation("androidx.core:core-ktx:1.10.1")
+
+    // Activity
+    implementation("androidx.activity:activity-ktx:1.7.2")
+
+    // Fragment
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
+
+    // Lifecycle
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+
+    // Hilt
+    implementation(Dependencies.daggerHilt)
+    kapt(Dependencies.daggerHiltCompiler)
 
     //Base
     implementation(Dependencies.androidxCoreCoreKtx)
     implementation(Dependencies.androidxAppcompatAppcompat)
     implementation(Dependencies.comGoogleAndroidMaterialMaterial)
     implementation(Dependencies.dataBinding)
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.21"
+
+    //DI
+    implementation(Dependencies.daggerHilt)
+    kapt(Dependencies.daggerHiltCompiler)
 
     //Jetpack compose
     implementation(Dependencies.composeUi)
@@ -74,34 +104,23 @@ dependencies {
     androidTestImplementation(Dependencies.composeUiUiTestJunit4)
     debugImplementation(Dependencies.composeUiUiTooling)
 
-    //Networking
-    implementation(Dependencies.retrofit2Retrofit)
-    implementation(Dependencies.retrofit2ConverterJson)
-    implementation(Dependencies.retrofit2AdapterRxjava2)
-    implementation(Dependencies.okhttpLoggingInterceptor)
-
-    //Kotlin Coroutines
-    implementation(Dependencies.kotlinCoroutinesCore)
-    implementation(Dependencies.kotlinCoroutinesAndroid)
-    implementation(Dependencies.lifecycleRuntimeKtx)
-
-    //DI
-    implementation(Dependencies.daggerHilt)
-    kapt(Dependencies.daggerHiltCompiler)
-
-    //Reactive
-    implementation(Dependencies.rxJava2RxAndroid)
-    implementation(Dependencies.rxJava3RxJava)
-
-    //Lifecycle
-    implementation(Dependencies.lifecycleCommonJava8)
-    implementation(Dependencies.lifecycleExtensions)
-
     //Test
     testImplementation(Dependencies.junit)
-    androidTestImplementation(Dependencies.androidxTestExtJunit)
     androidTestImplementation(Dependencies.androidxEspressoCore)
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
 
     //Navigation compose
     implementation(Dependencies.navigationCompose)
+
+    // OkHttp
+    implementation("com.squareup.okhttp3:okhttp-bom:5.0.0-alpha.7")
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
+    // Retrofit 2
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //Swipe to refresh
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.27.0")
 }

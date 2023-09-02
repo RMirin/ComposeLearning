@@ -1,4 +1,4 @@
-package com.compose.domain.entities
+package com.compose.domain.model
 
 data class RecipeModel(
     var id: Int = 0,

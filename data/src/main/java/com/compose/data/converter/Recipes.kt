@@ -1,9 +1,9 @@
 package com.compose.data.converter
 
 import com.compose.data.dto.RecipeDto
+import com.compose.domain.model.RecipeModel
+import com.compose.domain.model.RecipesModel
 import com.compose.data.response.RecipesResponse
-import com.compose.domain.entities.RecipeModel
-import com.compose.domain.entities.RecipesModel
 
 fun RecipesResponse.toModel() = RecipesModel().also {
     it.recipes = recipeDtoListToRecipeModelList(recipes)

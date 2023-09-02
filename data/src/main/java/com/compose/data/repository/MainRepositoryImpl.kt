@@ -1,11 +1,10 @@
 package com.compose.data.repository
 
-import com.compose.data.converter.toModel
-import com.compose.data.remote.ApiService
-import com.compose.domain.common.BaseRepository
 import com.compose.domain.common.State
-import com.compose.domain.entities.RecipesModel
-import com.compose.domain.repositories.MainRepository
+import com.compose.data.converter.toModel
+import com.compose.domain.model.RecipesModel
+import com.compose.data.remote.ApiService
+import com.compose.domain.MainRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

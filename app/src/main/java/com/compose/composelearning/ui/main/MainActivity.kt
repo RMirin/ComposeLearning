@@ -1,8 +1,9 @@
 package com.compose.composelearning.ui.main
 
+import com.compose.composelearning.util.Event
 import com.compose.domain.common.State
 import android.os.Bundle
-import android.util.Log
+import android.os.RemoteException
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.compose.setContent
@@ -28,17 +29,27 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.compose.composelearning.R
 import com.compose.composelearning.ui.theme.ComposeLearningTheme
-import com.compose.domain.entities.RecipeModel
+import com.compose.domain.model.RecipeModel
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.text.HtmlCompat
+import androidx.lifecycle.lifecycleScope
+import com.compose.composelearning.BuildConfig
+import com.compose.data.exception.ClientException
+import com.compose.data.exception.NoInternetException
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import kotlinx.coroutines.launch
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    val mainViewModel: MainViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
 
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,10 +57,14 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             ComposeLearningTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()
-                    , backgroundColor = colorResource(id = R.color.purple_200)
-                ) {
-                    LoadAndShowItems(model = mainViewModel)
+                val isLoading by mainViewModel.uiState.collectAsState()
+                val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading == State.Loading)
+                SwipeRefresh(state = swipeRefreshState, onRefresh = mainViewModel::getData) {
+                    Scaffold(modifier = Modifier.fillMaxSize()
+                        , backgroundColor = colorResource(id = R.color.purple_200)
+                    ) { padding ->
+                        LoadAndShowItems(model = mainViewModel, padding = padding)
+                    }
                 }
             }
         }
@@ -57,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
     @ExperimentalAnimationApi
     @Composable
-    fun LoadAndShowItems(model: MainViewModel) {
+    fun LoadAndShowItems(model: MainViewModel, padding: PaddingValues) {
         val uiState = model.uiState.collectAsState()
         // Mount your UI in according to uiState object
         when (uiState.value) {
@@ -66,20 +81,41 @@ class MainActivity : AppCompatActivity() {
             }
             is State.Error -> {
                 Toast.makeText(
-                    LocalContext.current,
-                    model.errorMessage.value?.getContentIfNotHandled(),
+                    applicationContext,
+                    getBasicErrorMsg(throwable = (uiState.value as State.Error).exception),
                     Toast.LENGTH_SHORT
                 ).show()
                 ReloadButton(model)
             }
             is State.Loading -> {
-                SimpleCircularProgressIndicator()
+//                SimpleCircularProgressIndicator()
             }
         }
         // Launch a coroutine when the component is first launched
         LaunchedEffect(model) {
             // this call should change uiState internally in your viewModel
             model.getData()
+        }
+    }
+
+    @Composable
+    private fun getBasicErrorMsg(throwable: Throwable): String {
+        if (BuildConfig.DEBUG) {
+            throwable.printStackTrace()
+        }
+        val context = LocalContext.current
+//        viewModelScope.launch {
+        return when (throwable) {
+            is RemoteException -> throwable.message ?: context.getString(R.string.alert_undefined)
+            is NoInternetException -> context.getString(R.string.alert_no_internet)
+            is ClientException -> throwable.error
+            else -> context.getString(when (throwable) {
+                is UnknownHostException,
+                is SocketTimeoutException,
+                is ConnectException -> R.string.alert_no_server_connection
+                else -> R.string.alert_undefined
+            })
+//            })
         }
     }
 }
@@ -141,16 +177,16 @@ fun RecipeListItem(recipe: RecipeModel) {
     }
 }
 
-@Composable
-fun SimpleCircularProgressIndicator() {
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxHeight(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        CircularProgressIndicator()
-    }
-}
+//@Composable
+//fun SimpleCircularProgressIndicator() {
+//    Column(modifier = Modifier
+//        .fillMaxWidth()
+//        .fillMaxHeight(),
+//        verticalArrangement = Arrangement.Center,
+//        horizontalAlignment = Alignment.CenterHorizontally) {
+//        CircularProgressIndicator()
+//    }
+//}
 
 @Composable
 fun ReloadButton(viewModel: MainViewModel) {

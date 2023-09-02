@@ -14,8 +14,6 @@ object Dependencies {
     const val daggerHilt = "com.google.dagger:hilt-android:${Versions.daggerHiltVersion}"
     const val daggerHiltCompiler =
         "com.google.dagger:hilt-compiler:${Versions.daggerHiltVersion}"
-    const val rxJava2RxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxJava2RxAndroidVersion}"
-    const val rxJava3RxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxJava3RxJavaVersion}"
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtxVersion}"
     const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleCommonJava8Version}"
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensionsVersion}"
