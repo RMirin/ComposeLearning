@@ -59,28 +59,27 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
 
-    // Kotlin
+    //Kotlin
     implementation(Dependencies.kotlinCoroutinesAndroid)
 
-    // UI Components
+    //UI Components
     implementation(Dependencies.comGoogleAndroidMaterialMaterial)
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6")
+    implementation(Dependencies.viewBindingPropertyDelegate)
 
-    // Core
-    implementation("androidx.core:core-ktx:1.10.1")
+    //Core
+    implementation(Dependencies.androidxCoreCoreKtx)
 
-    // Activity
-    implementation("androidx.activity:activity-ktx:1.7.2")
+    //Activity
+    implementation(Dependencies.activityKtx)
 
-    // Fragment
-    implementation("androidx.fragment:fragment-ktx:1.6.1")
+    //Fragment
+    implementation(Dependencies.fragmentKtx)
 
-    // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    //Lifecycle
+    implementation(Dependencies.lifecycleViewModelKtx)
+    implementation(Dependencies.lifecycleRuntimeKtx)
 
-    // Hilt
+    //Hilt
     implementation(Dependencies.daggerHilt)
     kapt(Dependencies.daggerHiltCompiler)
 
@@ -89,7 +88,7 @@ dependencies {
     implementation(Dependencies.androidxAppcompatAppcompat)
     implementation(Dependencies.comGoogleAndroidMaterialMaterial)
     implementation(Dependencies.dataBinding)
-    implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.21"
+    implementation(Dependencies.kotlinReflect)
 
     //DI
     implementation(Dependencies.daggerHilt)
@@ -107,20 +106,20 @@ dependencies {
     //Test
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.androidxEspressoCore)
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation(Dependencies.androidxTestExtJunit)
 
     //Navigation compose
     implementation(Dependencies.navigationCompose)
 
-    // OkHttp
-    implementation("com.squareup.okhttp3:okhttp-bom:5.0.0-alpha.7")
-    implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
+    //OkHttp
+    implementation(Dependencies.okHttpBom)
+    implementation(Dependencies.okHttp)
+    implementation(Dependencies.okHttpLogInterceptor)
 
-    // Retrofit 2
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    //Retrofit 2
+    implementation(Dependencies.retrofit2Retrofit)
+    implementation(Dependencies.retrofit2ConverterJson)
 
     //Swipe to refresh
-    implementation("com.google.accompanist:accompanist-swiperefresh:0.27.0")
+    implementation(Dependencies.composeSwipeRefresh)
 }

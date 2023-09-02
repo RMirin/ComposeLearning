@@ -14,7 +14,6 @@ object Dependencies {
     const val daggerHilt = "com.google.dagger:hilt-android:${Versions.daggerHiltVersion}"
     const val daggerHiltCompiler =
         "com.google.dagger:hilt-compiler:${Versions.daggerHiltVersion}"
-    const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtxVersion}"
     const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleCommonJava8Version}"
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensionsVersion}"
     const val androidxCoreCoreKtx = "androidx.core:core-ktx:${Versions.androidxCoreCoreKtxVersion}"
@@ -26,4 +25,14 @@ object Dependencies {
     const val androidxTestExtJunit = "androidx.test.ext:junit:${Versions.junitVersion}"
     const val androidxEspressoCore = "androidx.test.espresso:espresso-core:${Versions.androidxEspressoCoreVersion}"
     const val navigationCompose = "androidx.navigation:navigation-compose:${Versions.navigationComposeVersion}"
+    const val okHttp = "com.squareup.okhttp3:okhttp"
+    const val okHttpBom = "com.squareup.okhttp3:okhttp-bom:5.0.0-alpha.7"
+    const val okHttpLogInterceptor = "com.squareup.okhttp3:logging-interceptor"
+    const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
+    const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtxVersion}"
+    const val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtxVersion}"
+    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinReflectVersion}"
+    const val viewBindingPropertyDelegate = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:${Versions.viewBindingPropertyDelegateVersion}"
+    const val composeSwipeRefresh = "com.google.accompanist:accompanist-swiperefresh:${Versions.composeSwipeRefreshVersion}"
 }
