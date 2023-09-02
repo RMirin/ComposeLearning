@@ -11,7 +11,6 @@ interface MainUseCase {
     fun getData(): Flow<State<RecipesModel>>
 }
 
-@Singleton
 class MainUseCaseImpl @Inject constructor(
      private val mainRepository: MainRepository
 ) : MainUseCase {

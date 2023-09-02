@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class MainRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : MainRepository, BaseRepository() {
