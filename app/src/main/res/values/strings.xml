@@ -8,4 +8,10 @@
     <string name="alert_reorder">Reorder will be available once treatment has been started</string>
     <string name="alert_no_server_connection">Server error</string>
     <string name="alert_undefined">Unknown error</string>
+
+
+    <!-- Ui strings -->
+
+    <string name="main_view_detail">View detail</string>
+    <string name="main_reload">Reload</string>
 </resources>

@@ -119,18 +119,14 @@ class MainActivity : AppCompatActivity() {
             throwable.printStackTrace()
         }
         val context = LocalContext.current
-//        viewModelScope.launch {
         return when (throwable) {
             is RemoteException -> throwable.message ?: context.getString(R.string.alert_undefined)
             is NoInternetException -> context.getString(R.string.alert_no_internet)
             is ClientException -> throwable.error
-            else -> context.getString(when (throwable) {
-                is UnknownHostException,
-                is SocketTimeoutException,
-                is ConnectException -> R.string.alert_no_server_connection
-                else -> R.string.alert_undefined
-            })
-//            })
+            is UnknownHostException,
+            is SocketTimeoutException,
+            is ConnectException -> context.getString(R.string.alert_no_server_connection)
+            else -> context.getString(R.string.alert_undefined)
         }
     }
 }
@@ -153,6 +149,7 @@ fun BarkHomeContent(list: List<RecipeModel>) {
 @ExperimentalAnimationApi
 @Composable
 fun RecipeListItem(recipe: RecipeModel) {
+    val context = LocalContext.current
     var extended by remember { mutableStateOf(false) }
     Card(
         modifier = Modifier
@@ -181,7 +178,7 @@ fun RecipeListItem(recipe: RecipeModel) {
                 Column {
                     Text(text = recipe.title)
                     AnimatedVisibility(visible = !extended) {
-                        Text(text = "View detail", color = Blue)
+                        Text(text = context.getString(R.string.main_view_detail), color = Blue)
                     }
                     AnimatedVisibility(visible = extended) {
                         Html(text = recipe.summary)
@@ -205,6 +202,7 @@ fun RecipeListItem(recipe: RecipeModel) {
 
 @Composable
 fun ReloadButton(viewModel: MainViewModel) {
+    val context = LocalContext.current
     Column(modifier = Modifier
         .fillMaxWidth()
         .fillMaxHeight(),
@@ -213,7 +211,7 @@ fun ReloadButton(viewModel: MainViewModel) {
         Button(onClick = { viewModel.getData() }, colors = ButtonDefaults.textButtonColors(
             backgroundColor = Color.Cyan
         )) {
-            Text("reload", color = Color.White)
+            Text(context.getString(R.string.main_reload), color = Color.White)
         }
     }
 }
