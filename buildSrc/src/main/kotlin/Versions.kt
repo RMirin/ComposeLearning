@@ -14,7 +14,7 @@ object Versions {
     const val comGoogleAndroidMaterialMaterialVersion = "1.9.0"
     const val dataBindingVersion = "4.1.3"
     const val toolsBuildGradleVersion = "7.4.2"
-    const val kotlinGradlePluginVersion = "1.7.21"
+    const val kotlinGradlePluginVersion = "1.8.0"
     const val kotlinCompilerVersion = "1.7.21"
     const val daggerHiltAndroidGradlePluginVersion = "2.39.1"
     const val jvmTargetVersion = "1.8"
@@ -29,4 +29,5 @@ object Versions {
     const val activityKtxVersion = "1.7.2"
     const val kotlinReflectVersion = "1.7.21"
     const val viewBindingPropertyDelegateVersion = "1.5.6"
+    const val kspPluginVersion = "1.9.0-1.0.13"
 }

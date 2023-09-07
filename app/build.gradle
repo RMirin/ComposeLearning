@@ -90,10 +90,6 @@ dependencies {
     implementation(Dependencies.dataBinding)
     implementation(Dependencies.kotlinReflect)
 
-    //DI
-    implementation(Dependencies.daggerHilt)
-    kapt(Dependencies.daggerHiltCompiler)
-
     //Jetpack compose
     implementation(Dependencies.composeUi)
     implementation(Dependencies.composeMaterial)
