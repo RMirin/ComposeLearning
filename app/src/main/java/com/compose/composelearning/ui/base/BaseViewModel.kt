@@ -17,30 +17,28 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 
 @HiltViewModel
-open class BaseViewModel @Inject constructor(application: Application) : ViewModel() {
-
-    protected val context = application.applicationContext
+open class BaseViewModel @Inject constructor() : ViewModel() {
 
     private val _errorMessage = MutableSharedFlow<Event<String>>()
     val errorMessage: SharedFlow<Event<String>> get() = _errorMessage
 
-    protected fun getBasicErrorMsg(throwable: Throwable): Event<String> {
-        if (BuildConfig.DEBUG) {
-            throwable.printStackTrace()
-        }
+//    protected fun getBasicErrorMsg(throwable: Throwable): Event<String> {
+//        if (BuildConfig.DEBUG) {
+//            throwable.printStackTrace()
+//        }
 //        viewModelScope.launch {
-            return when (throwable) {
-                is RemoteException -> Event(throwable.message ?: context.getString(R.string.alert_undefined))
-                is NoInternetException -> Event(context.getString(R.string.alert_no_internet))
-                is ClientException -> Event(throwable.error)
-                else -> Event(context.getString(when (throwable) {
-                    is UnknownHostException,
-                    is SocketTimeoutException,
-                    is ConnectException -> R.string.alert_no_server_connection
-                    else -> R.string.alert_undefined
-                }))
+//            return when (throwable) {
+//                is RemoteException -> Event(throwable.message ?: context.getString(R.string.alert_undefined))
+//                is NoInternetException -> Event(context.getString(R.string.alert_no_internet))
+//                is ClientException -> Event(throwable.error)
+//                else -> Event(context.getString(when (throwable) {
+//                    is UnknownHostException,
+//                    is SocketTimeoutException,
+//                    is ConnectException -> R.string.alert_no_server_connection
+//                    else -> R.string.alert_undefined
+//                }))
 //            })
-        }
-    }
+//        }
+//    }
 
 }
